@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="jakarta.faces.facelets">
+<h:head>
+    <title>Lab3</title>
+    <link rel="stylesheet" href="style/style.css"/>
+</h:head>
+<h:body>
+    <header class="info-panel">
+        <div class="title">
+            <h1 class="main-title">Web Programming Lab №3</h1>
+            <h3>Лихачев Владлен, P3330, вариант 122545</h3>
+        </div>
+        <div class="back-button">
+            <h:button type="button" id="back-button" outcome="toIndex" value="Назад"/>
+        </div>
+    </header>
+    <div class="content">
+        <div class="divide-container">
+            <div class="form-panel">
+                <h2>Выбор точки</h2>
+                <h:form id="graphForm">
+                    <h3>Выберите координату X:</h3>
+                    <ui:repeat value="#{formBean.xRange}" var="val">
+                        <h:commandLink value="#{val}"
+                                       action="#{formBean.nop}"
+                                       styleClass="#{formBean.xValue != null and val == formBean.xValue ? 'active-link' : 'default-link'}">
+                            <f:setPropertyActionListener target="#{formBean.xValue}" value="#{val}.0"/>
+                            <f:ajax execute="@this" render="@form"/>
+                        </h:commandLink>
+                    </ui:repeat>
+                    <h3>Введите значение Y:</h3>
+                    <h:inputText id="yValue" value="#{formBean.yValue}" styleClass="input-field"
+                                 onkeydown="if(event.key==='Enter'){ mojarra.ab(this, event, 'change', '@this', '@form');;return false; }" 
+                                 onchange="mojarra.ab(this, event, 'change', '@this', '@form');">
+                        <f:converter converterId="floatConverter"/>
+                        <f:validator validatorId="strictRangeValidator"/>
+                    </h:inputText>
+                    <h:outputText value="#{formBean.yValue == null ? 'Нет' : formBean.yValue}" 
+                                  styleClass="#{formBean.yValue != null ? 'active-y-value' : 'default-y-value'}"/>
+                    <h:message id="yValueMessage" for="yValue" styleClass="input-error"/>
+                    <h3>Выберите множитель R:</h3>
+                    <ui:repeat value="#{formBean.rRange}" var="val">
+                        <h:commandButton value="#{val}"
+                                         action="#{formBean.nop}"
+                                         styleClass="#{formBean.rValue != null and val == formBean.rValue ? 'active-button' : 'default-button'}">
+                            <f:setPropertyActionListener target="#{formBean.rValue}" value="#{val}.0"/>
+                            <f:ajax execute="@this" render="@form graph-panel"/>
+                        </h:commandButton>
+                    </ui:repeat>
+                    <div class="submit-panel">
+                        <h:commandButton value="Отправить" action="#{formBean.addNewPoint}"
+                                        styleClass="submit-button"
+                                        disabled="#{formBean.xValue == null or formBean.yValue == null or formBean.rValue == null}">
+                            <f:ajax render="@form graph-panel result-table"/>
+                        </h:commandButton>
+                        <h:commandButton value="Очистить" action="#{formBean.clearAllPoints}"
+                                        styleClass="submit-button">
+                            <f:ajax render="@form graph-panel result-table"/>
+                        </h:commandButton>
+                    </div>
+                    <h:inputHidden id="cx" value="#{formBean.xClick}"/>
+                    <h:inputHidden id="cy" value="#{formBean.yClick}"/>
+                    <h:commandButton id="clickBtn" action="#{formBean.addNewClickPoint}"
+                                    style="display:none">
+                        <f:ajax render="graph-panel result-table" execute="@form"/>
+                    </h:commandButton>
+                </h:form>
+            </div>
+            <h:panelGroup class="graph-panel">
+                <div id="click_catcher">
+                    <h:panelGroup id="graph-panel">
+                        <svg height="250" width="250" viewBox="-125 -125 250 250"
+                                        xmlns="http://www.w3.org/2000/svg" id="graph"
+                                        style="pointer-events: none">
+                            <polygon fill="green"
+                                    points="100,0 0,0 0,-100"
+                                    id="figure1"
+                            />
+
+                            <polygon fill="green"
+                                    points="-100,0 -100,-50 0,-50 0,0"
+                                    id="figure2"
+                            />
+
+                            <path d="M 0 0 L -100 0 A 100 100 0 0 0 0 100 Z"
+                                fill="green"
+                                id="figure3"
+                            />
+
+                            <line stroke="#fff" x1="-125" x2="115"  y1="0" y2="0"  stroke-width="2"/>
+                            <line stroke="#fff" x1="50"   x2="50"   y1="5" y2="-5" stroke-width="2"/>
+                            <line stroke="#fff" x1="100"  x2="100"  y1="5" y2="-5" stroke-width="2"/>
+                            <line stroke="#fff" x1="-50"  x2="-50"  y1="5" y2="-5" stroke-width="2"/>
+                            <line stroke="#fff" x1="-100" x2="-100" y1="5" y2="-5" stroke-width="2"/>
+
+                            <line stroke="#fff" x1="0" x2="0"  y1="-115" y2="125"  stroke-width="2"/>
+                            <line stroke="#fff" x1="5" x2="-5" y1="50"   y2="50"   stroke-width="2"/>
+                            <line stroke="#fff" x1="5" x2="-5" y1="100"  y2="100"  stroke-width="2"/>
+                            <line stroke="#fff" x1="5" x2="-5" y1="-50"  y2="-50"  stroke-width="2"/>
+                            <line stroke="#fff" x1="5" x2="-5" y1="-100" y2="-100" stroke-width="2"/>
+
+                            <polygon fill="#fff" points="0,-125 -5,-114 0,-115 5,-114"/>
+                            <polygon fill="#fff" points="125,0 114,5 115,0 114,-5"/>
+                            <text x="100"  y="20"   font-size="12" fill="#fff" text-anchor="middle"      >R</text>
+                            <text x="-100" y="20"   font-size="12" fill="#fff" text-anchor="middle"      >-R</text>
+                            <text x="8"    y="-100" font-size="12" fill="#fff" dominant-baseline="middle">R</text>
+                            <text x="8"    y="100"  font-size="12" fill="#fff" dominant-baseline="middle">-R</text>
+                            <text x="50"   y="20"   font-size="12" fill="#fff" text-anchor="middle"      >R/2</text>
+                            <text x="-50"  y="20"   font-size="12" fill="#fff" text-anchor="middle"      >-R/2</text>
+                            <text x="8"    y="-50"  font-size="12" fill="#fff" dominant-baseline="middle">R/2</text>
+                            <text x="8"    y="50"   font-size="12" fill="#fff" dominant-baseline="middle">-R/2</text>
+                            <ui:fragment rendered="#{not empty formBean.rValue}">
+                                <ui:repeat value="#{pointSessionBean.points}" var="i" id="graph-filler">
+                                    <circle cx="#{i.x / formBean.rValue * 100}"
+                                            cy="#{-i.y / formBean.rValue * 100}"
+                                            r="4"
+                                            fill="#{i.insideArea ? '#fff' : '#f00'}" />
+                                </ui:repeat>
+                            </ui:fragment>
+                        </svg>
+                    </h:panelGroup>
+                </div>
+            </h:panelGroup>
+        </div>
+        <h:panelGroup id="result-table" class="result-table">
+            <h:dataTable class="result-table" id="result" var="res" value="#{pointSessionBean.points}" style="width: 100%">
+                    <h:column>
+                        <f:facet name="header">X</f:facet>
+                        #{res.x}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Y</f:facet>
+                        #{res.y}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">R</f:facet>
+                        #{res.r}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Входит?</f:facet>
+                        #{res.insideArea? "Да" : "Нет"}
+                    </h:column> 
+                    <h:column>
+                        <f:facet name="header">Время</f:facet>
+                        #{res.timestamp}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Выполнение</f:facet>
+                        #{res.executionTime} нс
+                    </h:column>
+                </h:dataTable>
+        </h:panelGroup>
+    </div>
+    <script type="text/javascript" src="script/graph.js"/>
+</h:body>
+</html>
