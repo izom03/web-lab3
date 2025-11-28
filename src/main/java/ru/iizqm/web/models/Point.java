@@ -3,26 +3,58 @@ package ru.iizqm.web.models;
 import java.io.Serializable;
 import java.util.Date;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
-@Data
-@NoArgsConstructor
+@Entity
+@Table(name = "point")
 public class Point implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
     private double x;
     private double y;
     private double r;
+
+    @Column(name = "inside_area")
     private boolean insideArea;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "timestamp")
     private Date timestamp;
+
+    @Column(name = "execution_time")
     private long executionTime;
 
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
     public double getX() { return x; }
+    public void setX(double x) { this.x = x; }
+
     public double getY() { return y; }
+    public void setY(double y) { this.y = y; }
+
     public double getR() { return r; }
+    public void setR(double r) { this.r = r; }
 
     public boolean isInsideArea() { return insideArea; }
+    public void setInsideArea(boolean insideArea) { this.insideArea = insideArea; }
+
     public Date getTimestamp() { return timestamp; }
+    public void setTimestamp(Date timestamp) { this.timestamp = timestamp; }
+
     public long getExecutionTime() { return executionTime; }
+    public void setExecutionTime(long executionTime) { this.executionTime = executionTime; }
+
+    public Point() {}
 
     public Point(double x, double y, double r) {
         this.x = x;

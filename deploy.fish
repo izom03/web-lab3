@@ -6,8 +6,6 @@ set deployfile "$wildfly/standalone/deployments/web-lab.war"
 
 argparse 'b/build' 's/standalone' -- $argv
 
-. ./db-config.fish
-
 if set -q _flag_build
     ./gradlew build war
 end

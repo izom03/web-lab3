@@ -29,6 +29,6 @@ replay_pid*
 # Ignore Gradle build output directory
 build
 
-db-config.fish
+**/META-INF/persistence.xml
 
 .idea/
