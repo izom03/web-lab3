@@ -1,14 +1,13 @@
-document.getElementById('click_catcher').onclick = function(e){
-    let svgRect = this.getBoundingClientRect();
-    let clickX = e.clientX - svgRect.left;
-    let clickY = e.clientY - svgRect.top;
+function handleSvgClick(e) {
+    const svg = e.currentTarget;
+    const pt = svg.createSVGPoint();
+    pt.x = e.clientX;
+    pt.y = e.clientY;
+    const svgP = pt.matrixTransform(svg.getScreenCTM().inverse());
 
-    let svgX = clickX - svgRect.width/2;
-    let svgY = svgRect.height/2 - clickY;
+    const normX = svgP.x / svg.width.baseVal.value * 2 * 1.25;
+    const normY = -svgP.y / svg.height.baseVal.value * 2 * 1.25;
 
-    let normX = svgX / svgRect.width * 2 * 1.25;
-    let normY = svgY / svgRect.height * 2 * 1.25;
-    
     document.getElementById('graphForm:cx').value = normX;
     document.getElementById('graphForm:cy').value = normY;
 
@@ -17,6 +16,6 @@ document.getElementById('click_catcher').onclick = function(e){
         e,
         'action',
         '@form',
-        'graph-panel result-table'
+        'main-panel'
     );
-};
+}

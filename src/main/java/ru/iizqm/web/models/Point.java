@@ -81,4 +81,11 @@ public class Point implements Serializable {
         executionTime = System.nanoTime() - now;
     }
 
+    public String getFormattedX() {
+        return String.format("%.2f", x);
+    }
+
+    public String getFormattedY() {
+        return String.format("%.2f", y);
+    }
 }

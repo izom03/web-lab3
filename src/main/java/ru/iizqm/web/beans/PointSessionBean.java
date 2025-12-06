@@ -9,7 +9,8 @@ import java.util.List;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import jakarta.transaction.Transactional;
 import ru.iizqm.web.models.Point;
 
@@ -17,9 +18,8 @@ import ru.iizqm.web.models.Point;
 @SessionScoped
 @Transactional
 public class PointSessionBean implements Serializable {
-
-    @PersistenceContext(unitName = "myPU")
-    private EntityManager em;
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("myPU");
+    private final EntityManager em = emf.createEntityManager();
 
     private List<Point> points = new ArrayList<>();
 
@@ -39,7 +39,9 @@ public class PointSessionBean implements Serializable {
             point.setTimestamp(new Date());
         }
 
+        em.getTransaction().begin();
         em.persist(point);
+        em.getTransaction().commit();
         points.add(point);
     }
 
@@ -50,7 +52,9 @@ public class PointSessionBean implements Serializable {
     }
 
     public void clearAll() {
+        em.getTransaction().begin();
         em.createQuery("DELETE FROM Point").executeUpdate();
+        em.getTransaction().commit();
         points.clear();
     }
 }

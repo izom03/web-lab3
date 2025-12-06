@@ -90,7 +90,7 @@ header .title h3 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 0; /* убрать старый отступ */
+    padding: 20px; /* убрать старый отступ */
     height: auto;    /* можно удалить calc */
     box-sizing: border-box;
 }
@@ -168,6 +168,7 @@ header .title h3 {
     transition: background 0.2s, color 0.2s, border 0.2s;
     color: var(--text-color);
     border-radius: 5px;
+    /*width: 80px;*/
 }
 
 .input-field:focus {
@@ -280,29 +281,196 @@ h3 {
     text-align: left;
 }
 
-/* Контейнер под SVG — подгоняется под размер SVG */
 #click_catcher {
-  display: inline-block; /* вместит svg по размеру */
-  line-height: 0;        /* убирает вертикальные пробелы/offset для inline содержимого */
-  padding: 0;
-  margin: 0;
-  /* если нужно, чтобы контейнер не занимал всю строку: */
-  vertical-align: top;
+    display: inline-block;
+    line-height: 0;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
 }
 
-/* Если h:panelGroup рендерит обёртку (например span/div) — тоже подстраиваем её */
 #click_catcher #graph-panel {
-  display: inline-block;
-  line-height: 0;
-  padding: 0;
-  margin: 0;
+    display: inline-block;
+    line-height: 0;
+    padding: 0;
+    margin: 0;
 }
 
-/* Сам svg должен быть block, чтобы контейнер точно соответствовал его bbox */
 #click_catcher svg {
-  display: block;
-  width: 250px;   /* взять из атрибутов svg или поставить auto/responsive */
-  height: 250px;  /* взять из атрибутов svg */
-  pointer-events: none; /* если хочешь, чтобы контейнер ловил клики, а svg — нет */
-  user-select: none;
+    display: block;
+    width: 250px;
+    height: 250px;
+    pointer-events: none;
+    user-select: none;
+}
+
+.main-layout {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.form-column,
+.graph-column,
+.result-column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.form-column {
+    flex: 0 0 20%;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.form-panel {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--panel-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.graph-column {
+    flex: 0 0 40%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.graph-panel {
+    width: 100%;
+    background-color: var(--panel-bg);
+    padding: 15px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#click_catcher {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+#click_catcher svg {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+}
+
+.result-column {
+    flex: 0 0 47%;
+}
+
+.result-panel {
+    width: 100%;
+    height: 100%;
+    background-color: var(--panel-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.result-table-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.result-table {
+    width: 100% !important;
+    border-collapse: collapse;
+    font-size: 0.95em;
+    min-width: 0;
+}
+
+.result-table th,
+.result-table td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid var(--panel2-bg);
+    white-space: nowrap;
+}
+
+.result-table th {
+    background-color: var(--panel2-bg);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.graph-column {
+    flex: 0 0 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    box-sizing: border-box;
+}
+
+
+.graph-panel {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    background-color: var(--panel-bg);
+    border-radius: 12px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+#click_catcher {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#click_catcher svg {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    pointer-events: none;
+    user-select: none;
+}
+
+.y-value-container {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* отступ между input и output */
+    width: 100%; /* или задай фиксированную ширину, если нужно */
+    white-space: nowrap; /* запрет переноса */
+    overflow: hidden; /* на случай переполнения */
+}
+
+.y-value-container .input-field {
+    flex: 1; /* занимает всё доступное пространство */
+    min-width: 60px; /* минимальная ширина, чтобы не исчезал */
+    width: auto; /* игнорируем фиксированную ширину */
+    box-sizing: border-box;
+}
+
+.y-value-container .active-y-value,
+.y-value-container .default-y-value {
+    flex: 0 0 auto; /* не растягивается, занимает столько, сколько нужно */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
