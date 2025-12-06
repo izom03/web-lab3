@@ -48,19 +48,19 @@ public class GraphBean implements Serializable {
         svg.append("<line stroke=\"#fff\" x1=\"5\" x2=\"-5\" y1=\"-100\" y2=\"-100\" stroke-width=\"1\"/>");*/
 
         for (int i = 1; i < 6; i++) {
-            svg.append("<line stroke=\"#fff\" x1=\""  + 20*i + "\" x2=\""  + 20*i + "\" y1=\"2\" y2=\"-2\" stroke-width=\"1\"/>");
-            svg.append("<line stroke=\"#fff\" x1=\"-" + 20*i + "\" x2=\"-" + 20*i + "\" y1=\"2\" y2=\"-2\" stroke-width=\"1\"/>");
-            svg.append("<line stroke=\"#fff\" x1=\"5\" x2=\"-2\" y1=\""  + 20*i + "\" y2=\""  + 20*i + "\" stroke-width=\"1\"/>");
-            svg.append("<line stroke=\"#fff\" x1=\"5\" x2=\"-2\" y1=\"-" + 20*i + "\" y2=\"-" + 20*i + "\" stroke-width=\"1\"/>");
+            svg.append("<line stroke=\"#fff\" x1=\""  + 20*i + "\" x2=\""  + 20*i + "\" y1=\"3\" y2=\"-3\" stroke-width=\"1\"/>");
+            svg.append("<line stroke=\"#fff\" x1=\"-" + 20*i + "\" x2=\"-" + 20*i + "\" y1=\"3\" y2=\"-3\" stroke-width=\"1\"/>");
+            svg.append("<line stroke=\"#fff\" x1=\"3\" x2=\"-3\" y1=\""  + 20*i + "\" y2=\""  + 20*i + "\" stroke-width=\"1\"/>");
+            svg.append("<line stroke=\"#fff\" x1=\"3\" x2=\"-3\" y1=\"-" + 20*i + "\" y2=\"-" + 20*i + "\" stroke-width=\"1\"/>");
         }
 
         svg.append("<polygon fill=\"#fff\" points=\"0,-125 -5,-114 0,-115 5,-114\"/>");
         svg.append("<polygon fill=\"#fff\" points=\"125,0 114,5 115,0 114,-5\"/>");
 
-        svg.append("<text x=\"100\" y=\"20\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\">5</text>");
-        svg.append("<text x=\"-100\" y=\"20\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\">-5</text>");
-        svg.append("<text x=\"8\" y=\"-100\" font-size=\"12\" fill=\"#fff\" dominant-baseline=\"middle\">5</text>");
-        svg.append("<text x=\"8\" y=\"100\" font-size=\"12\" fill=\"#fff\" dominant-baseline=\"middle\">-5</text>");
+        svg.append("<text x=\"100\" y=\"14\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\">5</text>");
+        svg.append("<text x=\"-100\" y=\"14\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\">-5</text>");
+        svg.append("<text x=\"6\" y=\"-100\" font-size=\"12\" fill=\"#fff\" dominant-baseline=\"middle\">5</text>");
+        svg.append("<text x=\"6\" y=\"100\" font-size=\"12\" fill=\"#fff\" dominant-baseline=\"middle\">-5</text>");
         /*svg.append("<text x=\"50\" y=\"20\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\">R/2</text>");
         svg.append("<text x=\"-50\" y=\"20\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\">-R/2</text>");
         svg.append("<text x=\"8\" y=\"-50\" font-size=\"12\" fill=\"#fff\" dominant-baseline=\"middle\">R/2</text>");
