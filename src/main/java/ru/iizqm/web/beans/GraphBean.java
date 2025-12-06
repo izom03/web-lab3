@@ -71,9 +71,20 @@ public class GraphBean implements Serializable {
 
         for (int i = points.size() - 1; i >= 0; i--) {
             Point p = points.get(i);
-            svg.append("<circle cx='" + (p.getX() / 5.f * 100) +
-                "' cy='" + (-p.getY() / 5.f * 100) +
-                "' r='2' fill='" + (p.isInsideArea() ? "#fff" : "#f00") + "'/>");
+            if (formBean.getrValue() != null) {
+                boolean newInsideArea = p.calc(formBean.getrValue());
+                svg.append("<circle cx='" + (p.getX() / 5.f * 100) +
+                    "' cy='" + (-p.getY() / 5.f * 100) +
+                    "' r='2' fill='" + (newInsideArea ? "#fff" : "#f00") + "'/>");
+                svg.append("<circle cx='" + (p.getX() / 5.f * 100) +
+                    "' cy='" + (-p.getY() / 5.f * 100) +
+                    "' r='1' fill='" + (p.isInsideArea() ? "#fff" : "#f00") + "'/>");
+            }
+            else {
+                svg.append("<circle cx='" + (p.getX() / 5.f * 100) +
+                    "' cy='" + (-p.getY() / 5.f * 100) +
+                    "' r='2' fill='" + (p.isInsideArea() ? "#fff" : "#f00") + "'/>");
+            }
         }
 
         svg.append("</svg>");

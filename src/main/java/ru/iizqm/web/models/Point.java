@@ -81,6 +81,12 @@ public class Point implements Serializable {
         executionTime = System.nanoTime() - now;
     }
 
+    public boolean calc(double anotherR) {
+        return (x >= 0.f && y >= 0.f && x + y <= anotherR) ||
+               (x <= 0 && y >= 0 && x >= -anotherR && y <= anotherR / 2.f) ||
+               (x <= 0 && y <= 0 && (Math.pow(x, 2.f) + Math.pow(y, 2.f) <= Math.pow(anotherR, 2.f)));
+    }
+
     public String getFormattedX() {
         return String.format("%.2f", x);
     }
