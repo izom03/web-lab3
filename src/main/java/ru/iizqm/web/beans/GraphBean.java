@@ -32,6 +32,9 @@ public class GraphBean implements Serializable {
                        ",-" + (10 * formBean.getrValue()) + " 0,-" + (10 * formBean.getrValue()) + " 0,0\" id=\"figure2\"/>");
             svg.append("<path d=\"M 0 0 L -" + (20 * formBean.getrValue()) + " 0 A " + (20 * formBean.getrValue()) + 
                        " " + (20 * formBean.getrValue()) + " 0 0 0 0 " + (20 * formBean.getrValue()) + " Z\" fill=\"green\" id=\"figure3\"/>");
+            svg.append("<line stroke=\"#fff\" x1=\""  + (20 * formBean.getrValue()) + "\" x2=\""  + 
+                        (20 * formBean.getrValue()) + "\" y1=\"3\" y2=\"-3\" stroke-width=\"1\"/>");;
+            svg.append("<text x=\"" + (20 * formBean.getrValue()) + "\" y=\"-5\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\">R</text>");
         }
 
         svg.append("<line stroke=\"#fff\" x1=\"-125\" x2=\"115\" y1=\"0\" y2=\"0\" stroke-width=\"1\"/>");
