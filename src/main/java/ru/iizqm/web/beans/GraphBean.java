@@ -37,8 +37,8 @@ public class GraphBean implements Serializable {
             svg.append("<text x=\"" + (20 * formBean.getrValue()) + "\" y=\"-5\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\">R</text>");
         }
 
-        svg.append("<line stroke=\"#fff\" x1=\"-125\" x2=\"115\" y1=\"0\" y2=\"0\" stroke-width=\"1\"/>");
-        svg.append("<line stroke=\"#fff\" x1=\"0\" x2=\"0\" y1=\"-115\" y2=\"125\" stroke-width=\"1\"/>");
+        svg.append("<line stroke=\"#fff\" x1=\"-125\" x2=\"120\" y1=\"0\" y2=\"0\" stroke-width=\"1\"/>");
+        svg.append("<line stroke=\"#fff\" x1=\"0\" x2=\"0\" y1=\"-120\" y2=\"125\" stroke-width=\"1\"/>");
 
         /*//svg.append("<line stroke=\"#fff\" x1=\"50\" x2=\"50\" y1=\"5\" y2=\"-5\" stroke-width=\"1\"/>");
         svg.append("<line stroke=\"#fff\" x1=\"100\" x2=\"100\" y1=\"5\" y2=\"-5\" stroke-width=\"1\"/>");
@@ -57,8 +57,8 @@ public class GraphBean implements Serializable {
             svg.append("<line stroke=\"#fff\" x1=\"3\" x2=\"-3\" y1=\"-" + 20*i + "\" y2=\"-" + 20*i + "\" stroke-width=\"1\"/>");
         }
 
-        svg.append("<polygon fill=\"#fff\" points=\"0,-125 -5,-114 0,-115 5,-114\"/>");
-        svg.append("<polygon fill=\"#fff\" points=\"125,0 114,5 115,0 114,-5\"/>");
+        svg.append("<polygon fill=\"#fff\" points=\"0,-125 -4,-116 0,-117 4,-116\"/>");
+        svg.append("<polygon fill=\"#fff\" points=\"125,0 116,4 117,0 116,-4\"/>");
 
         svg.append("<text x=\"100\" y=\"14\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\">5</text>");
         svg.append("<text x=\"-100\" y=\"14\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\">-5</text>");
