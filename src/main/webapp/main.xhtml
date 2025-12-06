@@ -34,6 +34,7 @@
                     <h3>Введите значение Y:</h3>
                     <h:panelGroup layout="block" class="y-value-container">
                         <h:inputText id="yValue" value="#{formBean.yValue}" styleClass="input-field"
+                                        onkeypress="return allowOnlyNumber(event)"
                                         onkeydown="if(event.key==='Enter'){ mojarra.ab(this, event, 'change', '@this', '@form');;return false; }" 
                                         onchange="mojarra.ab(this, event, 'change', '@this', '@form');">
                             <f:converter converterId="floatConverter"/>
@@ -114,6 +115,7 @@
             </h:panelGroup>
         </h:panelGroup>
     </h:panelGroup>
+    <script type="text/javascript" src="script/input.js"></script>
     <script type="text/javascript" src="script/graph.js"></script>
 </h:body>
 </html>

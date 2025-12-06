@@ -48,7 +48,7 @@ public class FormBean implements Serializable {
                 new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ошибка", "Значение R не выбрано!"));
             return;
         }
-        Point point = new Point(xClick * rValue, yClick * rValue, rValue);
+        Point point = new Point(xClick * 5.f, yClick * 5.f, rValue);
         pointSessionBean.addPoint(point);
     }
 
