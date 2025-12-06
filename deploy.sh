@@ -18,6 +18,15 @@ while [[ $# -gt 0 ]]; do
             standalone=true
             shift
             ;;
+        -bs | -sb)
+            build=true
+            standalone=true
+            shift
+            ;;
+        --*=* | -*)  # Обработка неизвестных или неподдерживаемых флагов
+            echo "Неизвестный аргумент: $1" >&2
+            exit 1
+            ;;
         *)
             echo "Неизвестный аргумент: $1" >&2
             exit 1
