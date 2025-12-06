@@ -66,10 +66,11 @@ public class GraphBean implements Serializable {
         svg.append("<text x=\"8\" y=\"-50\" font-size=\"12\" fill=\"#fff\" dominant-baseline=\"middle\">R/2</text>");
         svg.append("<text x=\"8\" y=\"50\" font-size=\"12\" fill=\"#fff\" dominant-baseline=\"middle\">-R/2</text>");*/
 
-        for (Point p : points) {
+        for (int i = points.size() - 1; i >= 0; i--) {
+            Point p = points.get(i);
             svg.append("<circle cx='" + (p.getX() / 5.f * 100) +
-            "' cy='" + (-p.getY() / 5.f * 100) +
-            "' r='4' fill='" + (p.isInsideArea() ? "#fff" : "#f00") + "'/>");
+                "' cy='" + (-p.getY() / 5.f * 100) +
+                "' r='4' fill='" + (p.isInsideArea() ? "#fff" : "#f00") + "'/>");
         }
 
         svg.append("</svg>");
