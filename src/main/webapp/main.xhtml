@@ -44,7 +44,7 @@
                                         styleClass="#{formBean.yValue != null ? 'active-y-value' : 'default-y-value'}"/>
                     </h:panelGroup>
                     <h:message id="yValueMessage" for="yValue" styleClass="input-error"/>
-                    <h3>Выберите множитель R:</h3>
+                    <h3>Выберите значение R:</h3>
                     <ui:repeat value="#{formBean.rRange}" var="val">
                         <h:commandButton value="#{val}"
                                             action="#{formBean.nop}"
