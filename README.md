@@ -1,2 +1,23 @@
-# web-lab3
-Laboratory work #3 for Web Programming course at ITMO University
+## ITMO University
+
+# Лабораторная работа №3 по Веб-программировнию
+
+Вариант: 122545
+
+Выполнил: Лихачев Владлен Артемович (367355)
+
+## Зависимости
+
+Для компиляции используется **Java 17** и **gradle**.
+
+Для запуска используется **WildFly 28.0.0 Final**.
+
+## Запуск и компиляция
+
+Для запуска использовать `./gradlew build war`.
+
+Архив из `build/libs/` нужно скопировать в `wildfly-28.0.0.Final/standalone/deployments/`, для запуска сервера используется `wildfly-28.0.0.Final/bin/standalone.sh`
+
+### Через скрипт
+
+Для запуске на Linux создан скрипт `deploy.sh`, аргумент `-b` компилирует, а аргумент `-s` запускает сервер
