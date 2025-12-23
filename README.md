@@ -16,8 +16,8 @@
 
 Для запуска использовать `./gradlew build war`.
 
-Архив из `build/libs/` нужно скопировать в `wildfly-28.0.0.Final/standalone/deployments/`, для запуска сервера используется `wildfly-28.0.0.Final/bin/standalone.sh`
+Архив из `build/libs/` нужно скопировать в `wildfly-28.0.0.Final/standalone/deployments/`, для запуска сервера используется `wildfly-28.0.0.Final/bin/standalone.sh`.
 
 ### Через скрипт
 
-Для запуске на Linux создан скрипт `deploy.sh`, аргумент `-b` компилирует, а аргумент `-s` запускает сервер
+Для запуске на Linux создан скрипт `deploy.sh`, аргумент `-b` компилирует, а аргумент `-s` запускает сервер.
